@@ -1,3 +1,5 @@
+//Model for posts
+
 import * as mongo from 'mongoose'
 
 const post = mongo.Schema({

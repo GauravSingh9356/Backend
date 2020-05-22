@@ -1,3 +1,5 @@
+//Model for User Database
+
 import * as mongo from 'mongoose'
 
 const userSchema = new mongo.Schema({
@@ -66,6 +68,11 @@ const userSchema = new mongo.Schema({
       instagram: String,
       linkedIn: String
     }
+  },
+  messageToken: {
+    android: String,
+    ios: String,
+    web: String,
   }
 });
 

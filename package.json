@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/crossphoton/Backend.git"
+    "url": "git+https://github.com/IIITians-Network/Backend.git"
   },
   "author": "IAMIIITIAN",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/crossphoton/Backend/issues"
+    "url": "https://github.com/IIITians-Network/Backend/issues"
   },
-  "homepage": "https://github.com/crossphoton/Backend#readme",
+  "homepage": "https://github.com/IIITians-Network/Backend#readme",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "bcryptjs": "^2.4.3",

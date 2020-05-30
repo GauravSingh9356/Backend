@@ -4,7 +4,7 @@ require('dotenv').config({ path: '.env' });
 module.exports = (req, res, next) => {
     try{
         const token = req.query.key;
-        const decoded = jwt.verify(token, process.env.JWT_KEY);
+        const decoded = jwt.verify(token, process.env.JWT_ACCESS_TOKEN);
         req.userData = decoded;
         next();
     }

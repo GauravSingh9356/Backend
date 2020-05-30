@@ -7,7 +7,7 @@ const checkAuth = require('../middleware/check-auth');
 require('dotenv').config();
 const User = require('../models/user');
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
     User.find({email: req.body.email })
     .exec()
     .then(user => {
@@ -34,7 +34,7 @@ router.post('/', (req, res, next) => {
                                 userId: user[0]._id,
                                 userRole: user[0].userRole
                             },
-                            process.env.JWT_KEY,
+                            process.env.JWT_ACCESS_TOKEN,
                             {
                                 expiresIn: "10h"
                             }

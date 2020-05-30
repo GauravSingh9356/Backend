@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-require('dotenv').config({ path: '.env' });
+require('dotenv').config({path: '.env' });
 
 //Middlewares
 app.use(express.urlencoded({ extended: true }));
@@ -9,11 +9,15 @@ app.use(express.json());
 
 
 //Database connectivity
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useUnifiedTopology', true);
-mongoose.set('useFindAndModify', false);
-mongoose.connect(process.env.MONGO_URI, ()=> console.log("Db Up"))
-.catch(err => console.log(err));
+mongoose.connect("mongodb://localhost:27017",
+    {useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: true},
+    (err)=> {
+        if(err) throw err;
+        console.log("DB UP")
+    })
 
 
 //Routes
@@ -22,9 +26,9 @@ const registerRoute = require('./routes/register');
 const profileRoute = require('./routes/profile');
 
 
-app.use('/login', loginRoute);
-app.use('/register', registerRoute);
-app.use('/profile', profileRoute);
+app.use('/v1/login', loginRoute);
+app.use('/v1/register', registerRoute);
+app.use('/v1/profile', profileRoute);
 app.get('/qwe', (req, res) => {
     res.send('hello');
 })

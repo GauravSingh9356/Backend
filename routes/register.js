@@ -8,7 +8,7 @@ const checkActivation = require('../middleware/check-activation');
 const jwt = require('jsonwebtoken');
 const sendmail = require('../middleware/send-verification-email');
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
     bcrypt.hash(req.body.password, 10, (err, hash) => {
             if(err){
                 return res.status(500).json({
@@ -32,7 +32,6 @@ router.post('/', (req, res, next) => {
                 .then(result => {
                     sendmail(req.body.email);
 
-                    console.log(result);
                     res.status(201).json({
                         message: 'User Created'
                     });
@@ -40,7 +39,7 @@ router.post('/', (req, res, next) => {
                 .catch(err => {
                     console.log(err);
                     res.status(500).json({
-                        error: err
+                        error: err.errmsg
                     })
                 });
             }
@@ -60,7 +59,7 @@ router.get('/activate', checkActivation, (req, res, next) => {
                 userId: user._id,
                 userRole: user.userRole
             },
-            process.env.JWT_KEY,
+            process.env.JWT_ACCESS_TOKEN,
             {
                 expiresIn: "10h"
             }
